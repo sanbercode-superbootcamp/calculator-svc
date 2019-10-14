@@ -11,9 +11,9 @@
     "dev-test": "tsc -w -p test",
     "build": "tsc",
     "build-test": "tsc -p test",
-    "nodemon": "nodemon --delay 1500ms -e js --watch dist ."
+    "nodemon": "nodemon --delay 1500ms -e js --watch dist dist/server.js"
   },
-  "author": "muhammad hasan",
+  "author": "hilmiID",
   "license": "MIT",
   "devDependencies": {
     "@types/chai": "^4.2.3",
