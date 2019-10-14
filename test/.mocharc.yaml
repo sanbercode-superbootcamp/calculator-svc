@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 spec: "./test/dist/**/*.spec.js"
+=======
+spec: "./test/dist/**/*.spec.js"
+>>>>>>> f8e214eecd905d3996496473bade816a01a7ef56
