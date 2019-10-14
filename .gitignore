@@ -1,3 +1,7 @@
 node_modules
+<<<<<<< HEAD
+dist
+=======
 dist
 test/dist
+>>>>>>> f8e214eecd905d3996496473bade816a01a7ef56
