@@ -11,5 +11,5 @@ export function multi(n1: number, n2: number): number {
 }
 
 export function div(n1: number, n2: number): number {
-    return n1 * n2;
+    return n1 / n2;
 }

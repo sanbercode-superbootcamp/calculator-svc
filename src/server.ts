@@ -20,6 +20,7 @@ const server = createServer((req, res) => {
         default:
             res.statusCode = 404;
             res.end();
+            break;
     }
 });
 
