@@ -1,19 +1,19 @@
 {
   "name": "calculator-svc",
   "version": "1.0.0",
-  "description": "service to expose calculator",
+  "description": "",
   "main": "dist/server.js",
   "scripts": {
     "start": "node .",
     "test": "mocha",
-    "test-e2e": "mocha --config ./test/.mocharc.yaml",
+    "test-2e2": "mocha --config ./test/.mocharc.yaml",
     "dev": "tsc -w",
     "dev-test": "tsc -w -p test",
     "build": "tsc",
     "build-test": "tsc -p test",
-    "nodemon": "nodemon --delay 1500ms -e js --watch dist ."
+    "auto": "nodemon --delay 1500ms -e js --watch dist ."
   },
-  "author": "muhammad hasan",
+  "author": "",
   "license": "MIT",
   "devDependencies": {
     "@types/chai": "^4.2.3",
