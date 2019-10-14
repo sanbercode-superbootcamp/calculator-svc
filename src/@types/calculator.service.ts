@@ -4,8 +4,9 @@ import { add } from './calculator'
 
 export function addService(req: IncomingMessage, res: ServerResponse){
     //parsing request
-    const url = parse(req.url)
+    const url = parse(req.url, true)
     const query = url.query
+    console.log('query : ',query)
     console.log(query['n1'], query['n2'])
     if(!query['n1'] || !query['n2']){
         res.statusCode = 400
