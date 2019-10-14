@@ -1,0 +1,30 @@
+{
+    "name": "calculator-service",
+    "version": "1.0.0",
+    "description": "",
+    "main": "dist/server.js",
+    "scripts": {
+        "test": "mocha",
+        "test-e2e": "mocha --config test/.mocharc.yaml ",
+        "start": "node ./dist/server.js",
+        "dev": "tsc -w",
+        "dev-test": "tsc -w -p test",
+        "build": "tsc",
+        "build-test": "tsc -p test",
+        "nodemon": "nodemon --delay 150ms -e js --watch dist dist/server.js"
+    },
+    "author": "febry",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/chai": "^4.2.3",
+        "@types/mocha": "^5.2.7",
+        "@types/node": "^12.7.12",
+        "@types/request": "^2.48.3",
+        "@types/request-promise-native": "^1.0.17",
+        "chai": "^4.2.0",
+        "mocha": "^6.2.1",
+        "request": "^2.88.0",
+        "request-promise-native": "^1.0.7",
+        "typescript": "^3.6.4"
+    }
+}
