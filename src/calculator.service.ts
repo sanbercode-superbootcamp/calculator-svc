@@ -1,36 +1,52 @@
 import { IncomingMessage, ServerResponse } from "http";
-import { parse } from 'url';
-import { add } from "./calculator";
+import { parse } from "url";
+import { add, divide, multiple, substract } from "./calculator";
 
-export function addService(req: IncomingMessage, res: ServerResponse) {
-  // parsing parameters
-  const url = parse(req.url, true);
-  const query = url.query;
-  
-  // n1 & n2 harus ada
-  if (!query['n1'] || !query['n2']) {
-    res.statusCode = 400;
-    res.end();
-    return;
-  }
+function addService(req: IncomingMessage, res: ServerResponse) {
+    const url = parse(req.url, true);
+    console.log(url.query);
+    console.log(url.pathname);
+    const pathname = url.pathname;
+    if (url.pathname != '/add' && url.pathname != '/substract' && url.pathname != '/multiple' && url.pathname != '/divide') {
+        res.statusCode = 404;
+        res.end();
+        return;
+    }
+    if (!url.query['i1'] || !url.query['i2']) {
+        res.statusCode = 400;
+        res.end();
+        return;
+    }
 
-  // n1 & n2 harus angka
-  const n1 = parseInt(query['n1'] as string, 10);
-  const n2 = parseInt(query['n2'] as string, 10);
-  if(isNaN(n1) || isNaN(n2)){
-    res.statusCode = 400;
-    res.end();
-    return;
-  }
+    const input1 = parseInt(url.query.i1 as string, 10);
+    const input2 = parseInt(url.query.i2 as string, 10);
 
-  // add
-  const n3 = add(n1, n2);
+    if (isNaN(input1) || isNaN(input2)) {
+        res.statusCode = 400;
+        res.end();
+        return;
+    }
+    // const result = ;
+    res.setHeader("Content-Type", "application/json");
+    switch (url.pathname) {
+        case '/add':
+            res.write(JSON.stringify({ result: add(input1, input2) }));
+            res.end();
+            break;
+        case '/substract':
+            res.write(JSON.stringify({ result: substract(input1, input2) }));
+            res.end();
+            break;
+        case '/multiple':
+            res.write(JSON.stringify({ result: multiple(input1, input2) }));
+            res.end();
+            break;
+        case '/divide':
+            res.write(JSON.stringify({ result: divide(input1, input2) }));
+            res.end();
+            break;
+    }
 
-  // encode results
-  const output = {
-    result: n3
-  };
-  res.setHeader('Content-Type', 'application/json');
-  res.write(JSON.stringify(output));
-  res.end();
 }
+
+export { addService }
