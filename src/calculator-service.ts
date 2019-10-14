@@ -1,10 +1,11 @@
 import { IncomingMessage, ServerResponse } from "http";
 import { parse } from 'url';
-import { add } from "./calculator";
+import { plus, minus, multiply, divide } from "./calculator";
 
-export function addService(req: IncomingMessage, res: ServerResponse) {
+export function service(req: IncomingMessage, res: ServerResponse) {
     //parsing request
     const url = parse(req.url, true);
+    const pathName = url.pathname;
     const query = url.query;
     
     // n1 & n2 validation 
@@ -23,7 +24,24 @@ export function addService(req: IncomingMessage, res: ServerResponse) {
     }
 
     //add business logic
-    const result = add(n1, n2);
+    let result;
+    switch(pathName){
+        case '/plus':
+            result = plus(n1, n2);
+            break;
+        case '/minus':
+            result = minus(n1, n2);
+            break
+        case '/multiply':
+            result = multiply(n1, n2);
+            break
+        case '/divide':
+            result = divide(n1, n2);
+            break
+        default:
+            res.statusCode = 404;
+            res.end();
+    }
     //encode result
     const output = {
         result: result

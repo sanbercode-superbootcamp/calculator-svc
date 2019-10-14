@@ -8,13 +8,34 @@ describe('calculator server', function(){
         this.slow(5000);
 
         it('should do add operation', async function(){
-            const result = await get('http://localhost:3000/add?n1=4&n2=3', { json: true});
+            const result = await get('http://localhost:3000/plus?n1=4&n2=3', { json: true});
             expect(result).to.be.deep.eq({
                 result: 7
             });
         });
 
-        it.only('should error when input is not number', async function(){
+        it('should do minus operation', async function(){
+            const result = await get('http://localhost:3000/minus?n1=4&n2=3', { json: true});
+            expect(result).to.be.deep.eq({
+                result: 1
+            });
+        });
+
+        it('should do multiply operation', async function(){
+            const result = await get('http://localhost:3000/multiply?n1=4&n2=3', { json: true});
+            expect(result).to.be.deep.eq({
+                result: 12
+            });
+        });
+
+        it('should do divide operation', async function(){
+            const result = await get('http://localhost:3000/divide?n1=4&n2=2', { json: true});
+            expect(result).to.be.deep.eq({
+                result: 2
+            });
+        });
+
+        it('should error when input is not number', async function(){
             let error = null;
             try{
                 const result = await get('http://localhost:3000/add?n1=4&n2=hahas', { json: true});
@@ -26,10 +47,10 @@ describe('calculator server', function(){
             expect(error.statusCode).to.be.eq(400);
         });
 
-        it.only('should error when no input', async function(){
+        it('should error when no input', async function(){
             let error = null;
             try{
-                const result = await get('http://localhost:3000/add', { json: true});
+                const result = await get('http://localhost:3000/plus', { json: true});
             } catch(err){
                 error = err;
             }
@@ -38,7 +59,7 @@ describe('calculator server', function(){
             expect(error.statusCode).to.be.eq(400);
         });
 
-        it.only('should error when no endpoint', async function(){
+        it('should error when no endpoint', async function(){
             let error = null;
             try{
                 const result = await get('http://localhost:3000/asdasdsadsad', { json: true});
@@ -47,7 +68,7 @@ describe('calculator server', function(){
             }
             expect(error).to.be.exist;
             expect(error).to.be.instanceOf(StatusCodeError);
-            expect(error.statusCode).to.be.eq(404);
+            expect(error.statusCode).to.be.eq(400);
         });
     });
 });
