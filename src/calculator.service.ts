@@ -15,6 +15,7 @@ export function calculatorService(req: IncomingMessage, res: ServerResponse){
     //n1 & n2 harus angka
     const n1 = parseInt(query["n1"] as string, 10);
     const n2 = parseInt(query["n2"] as string, 10);
+    
     if(isNaN(n1) || isNaN(n2)){
         res.statusCode = 400;
         res.end();
@@ -22,7 +23,7 @@ export function calculatorService(req: IncomingMessage, res: ServerResponse){
     }
 
     //switch case operator
-    console.log(url.pathname);
+    //console.log(url.pathname);
     let n3 = null;
     switch(url.pathname){
     case "/tambah": n3 = tambah(n1, n2);
@@ -35,8 +36,11 @@ export function calculatorService(req: IncomingMessage, res: ServerResponse){
     break;
     }
 
-    //encode reuslt
-
-    // console.log(url.query);
-    res.end(n3.toString());
+    //encode result
+    const output = {
+        result: n3
+      };
+      res.setHeader('Content-Type', 'application/json');
+      res.write(JSON.stringify(output));
+      res.end();
 }

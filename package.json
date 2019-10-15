@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node .",
     "test": "mocha",
-    "test-2e2": "mocha --config ./test/.mocharc.yaml",
+    "test-e2e": "mocha --config ./test/.mocharc.yaml",
     "dev": "tsc -w",
     "dev-test": "tsc -w -p test",
     "build": "tsc",

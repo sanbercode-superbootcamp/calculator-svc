@@ -2,15 +2,12 @@
     "compilerOptions":{
         "module": "commonjs",
         "moduleResolution": "node",
-		"target":"es2017",
         "rootDir": "./src",
+        "target":"es2017",
         "outDir": "./dist",
         "typeRoots": [
-        "node_modules/@types",
-        "src/@types"
+            "../node_modules/@types",
+            "/src/@types"
         ]
-},
-"exclude": [
-    "test"
-]
+    }
 }
